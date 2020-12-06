@@ -9,11 +9,12 @@ export default function Employees() {
     return {
       selectedEmployees: JSON.parse(localStorage.getItem("employees")) || [],
       employees: [],
-      loading: true,
     };
   };
 
   const [employees, setEmployees] = useState(initialState());
+  const [selected, setSelected] = useState(initialState());
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const emplServ = new EmployeesSeervice();
@@ -22,8 +23,9 @@ export default function Employees() {
         empl1.firstName > empl2.firstName ? 1 : -1
       );
       setEmployees((prevEmployees) => {
-        return { ...prevEmployees, data: sortedEmployees, loading: false };
+        return { ...prevEmployees, data: sortedEmployees };
       });
+      setLoading(false);
     });
   }, []);
 
@@ -54,7 +56,7 @@ export default function Employees() {
   };
   return (
     <div className="employees">
-      {employees.loading ? (
+      {loading ? (
         <p>Loading...</p>
       ) : (
         <div className="employees__wrapper">
