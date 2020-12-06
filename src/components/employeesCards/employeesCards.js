@@ -1,3 +1,5 @@
+import { StoreContext } from "./../../utils/store";
+import { useContext } from "react";
 import EmployeesCard from "./../employeesCard/employeesCard";
 import "./employeesCards.css";
 function groupEmployesByAlphabet(empl) {
@@ -13,8 +15,12 @@ function groupEmployesByAlphabet(empl) {
   return resObj;
 }
 
-export default function EmployeesCards({ eployees, selected, togleEmploye }) {
-  const groupEmployes = groupEmployesByAlphabet(eployees);
+export default function EmployeesCards({ togleEmploye }) {
+  const {
+    employees: [employees],
+  } = useContext(StoreContext);
+
+  const groupEmployes = groupEmployesByAlphabet(employees);
   const employeesCardsList = [];
 
   for (let i = 65; i < 91; i++) {
@@ -24,11 +30,14 @@ export default function EmployeesCards({ eployees, selected, togleEmploye }) {
         key={letter}
         header={letter}
         employeList={groupEmployes[letter]}
-        selected={selected}
-        togleEmploye={togleEmploye}
       />
     );
   }
 
-  return <div className="employeesCards">{employeesCardsList}</div>;
+  return (
+    <div className="employeesCards">
+      <h2>​Employees</h2>
+      {employeesCardsList}
+    </div>
+  );
 }

@@ -1,11 +1,27 @@
+import { StoreContext } from "./../../utils/store";
+import { useContext, useEffect } from "react";
 import "./employeesCard.css";
-export default function EmployeesCard({
-  header,
-  employeList = [],
-  selected,
-  togleEmploye,
-}) {
-  function renderItems(arr) {
+export default function EmployeesCard({ header, employeList = [] }) {
+  const {
+    selected: [selected, setSelected],
+  } = useContext(StoreContext);
+
+  useEffect(() => localStorage.setItem("employees", JSON.stringify(selected)), [
+    selected,
+  ]);
+
+  const togleEmploye = (id) => {
+    setSelected((prevSelected) => {
+      const idx = prevSelected.indexOf(id);
+      const newSelectedEmployees =
+        idx >= 0
+          ? [...prevSelected.slice(0, idx), ...prevSelected.slice(idx + 1)]
+          : [...prevSelected, id];
+      return newSelectedEmployees;
+    });
+  };
+
+  const renderItems = (arr) => {
     if (arr.length === 0) {
       return <li>---</li>;
     }
@@ -21,7 +37,7 @@ export default function EmployeesCard({
         </li>
       );
     });
-  }
+  };
   return (
     <div className="employeesCard">
       <h3>{header}</h3>

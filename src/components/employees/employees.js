@@ -1,17 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { StoreContext } from "./../../utils/store";
 import EmployeesSeervice from "./../../services/employees-service";
 import EmployeesCards from "./../employeesCards/employeesCards";
 import SelectedEmployeesCards from "../selectedEmployeesCards/selectedEmployeesCards";
 import "./employees.css";
 
 export default function Employees() {
-  const initialState = () => {
-    return JSON.parse(localStorage.getItem("employees")) || [];
-  };
-
-  const [employees, setEmployees] = useState([]);
-  const [selected, setSelected] = useState(initialState());
-  const [loading, setLoading] = useState(true);
+  const {
+    employees: [, setEmployees],
+    loading: [loading, setLoading],
+  } = useContext(StoreContext);
 
   useEffect(() => {
     const emplServ = new EmployeesSeervice();
@@ -24,36 +22,14 @@ export default function Employees() {
     });
   }, []);
 
-  useEffect(() => localStorage.setItem("employees", JSON.stringify(selected)), [
-    selected,
-  ]);
-
-  const togleEmploye = (id) => {
-    setSelected((prevSelected) => {
-      const idx = prevSelected.indexOf(id);
-      const newSelectedEmployees =
-        idx >= 0
-          ? [...prevSelected.slice(0, idx), ...prevSelected.slice(idx + 1)]
-          : [...prevSelected, id];
-      return newSelectedEmployees;
-    });
-  };
   return (
     <div className="employees">
       {loading ? (
         <p>Loading...</p>
       ) : (
         <div className="employees__wrapper">
-          <EmployeesCards
-            eployees={employees}
-            selected={selected}
-            togleEmploye={togleEmploye}
-          />
-          {selected.length > 0 ? (
-            <SelectedEmployeesCards eployees={employees} selected={selected} />
-          ) : (
-            <p>No selected employees</p>
-          )}
+          <EmployeesCards />
+          <SelectedEmployeesCards />
         </div>
       )}
     </div>

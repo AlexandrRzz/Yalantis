@@ -1,3 +1,5 @@
+import { StoreContext } from "./../../utils/store";
+import { useContext } from "react";
 import SelectedEmployeesCard from "../selectedEmployeesCard/selectedEmployeesCard";
 import "./selectedEmployeesCards.css";
 
@@ -60,19 +62,34 @@ function sortByMonthAndFirstName(arr) {
   });
 }
 
-export default function SelectedEmployeesCards({ eployees, selected }) {
-  const groupEmployes = sortByMonthAndFirstName(
-    groupSelectedEmployesByMonth(selected, eployees)
-  );
-  const employeesCardsList = groupEmployes.map((group) => {
-    return (
-      <SelectedEmployeesCard
-        key={group.month}
-        header={monthNames[group.month]}
-        employeList={group.employees}
-      />
-    );
-  });
+export default function SelectedEmployeesCards() {
+  const {
+    employees: [employees],
+    selected: [selected],
+  } = useContext(StoreContext);
 
-  return <div className="selectedEmployeesCard">{employeesCardsList}</div>;
+  let employeesCardsList = <h3>No selected employees</h3>;
+
+  if (selected.length > 0) {
+    const groupEmployes = sortByMonthAndFirstName(
+      groupSelectedEmployesByMonth(selected, employees)
+    );
+
+    employeesCardsList = groupEmployes.map((group) => {
+      return (
+        <SelectedEmployeesCard
+          key={group.month}
+          header={monthNames[group.month]}
+          employeList={group.employees}
+        />
+      );
+    });
+  }
+
+  return (
+    <div className="selectedEmployeesCard">
+      <h2>​Employees birthday</h2>
+      {employeesCardsList}
+    </div>
+  );
 }
