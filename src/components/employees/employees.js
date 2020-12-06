@@ -6,13 +6,10 @@ import "./employees.css";
 
 export default function Employees() {
   const initialState = () => {
-    return {
-      selectedEmployees: JSON.parse(localStorage.getItem("employees")) || [],
-      employees: [],
-    };
+    return JSON.parse(localStorage.getItem("employees")) || [];
   };
 
-  const [employees, setEmployees] = useState(initialState());
+  const [employees, setEmployees] = useState([]);
   const [selected, setSelected] = useState(initialState());
   const [loading, setLoading] = useState(true);
 
@@ -22,36 +19,23 @@ export default function Employees() {
       const sortedEmployees = [...employeesData].sort((empl1, empl2) =>
         empl1.firstName > empl2.firstName ? 1 : -1
       );
-      setEmployees((prevEmployees) => {
-        return { ...prevEmployees, data: sortedEmployees };
-      });
+      setEmployees(sortedEmployees);
       setLoading(false);
     });
   }, []);
 
-  useEffect(
-    () =>
-      localStorage.setItem(
-        "employees",
-        JSON.stringify(employees.selectedEmployees)
-      ),
-    [employees.selectedEmployees]
-  );
+  useEffect(() => localStorage.setItem("employees", JSON.stringify(selected)), [
+    selected,
+  ]);
 
   const togleEmploye = (id) => {
-    setEmployees((prevEmployees) => {
-      const idx = prevEmployees.selectedEmployees.indexOf(id);
+    setSelected((prevSelected) => {
+      const idx = prevSelected.indexOf(id);
       const newSelectedEmployees =
         idx >= 0
-          ? [
-              ...prevEmployees.selectedEmployees.slice(0, idx),
-              ...prevEmployees.selectedEmployees.slice(idx + 1),
-            ]
-          : [...prevEmployees.selectedEmployees, id];
-      return {
-        ...prevEmployees,
-        selectedEmployees: newSelectedEmployees,
-      };
+          ? [...prevSelected.slice(0, idx), ...prevSelected.slice(idx + 1)]
+          : [...prevSelected, id];
+      return newSelectedEmployees;
     });
   };
   return (
@@ -61,15 +45,12 @@ export default function Employees() {
       ) : (
         <div className="employees__wrapper">
           <EmployeesCards
-            eployees={employees.data}
-            selected={employees.selectedEmployees}
+            eployees={employees}
+            selected={selected}
             togleEmploye={togleEmploye}
           />
-          {employees.selectedEmployees.length > 0 ? (
-            <SelectedEmployeesCards
-              eployees={employees.data}
-              selected={employees.selectedEmployees}
-            />
+          {selected.length > 0 ? (
+            <SelectedEmployeesCards eployees={employees} selected={selected} />
           ) : (
             <p>No selected employees</p>
           )}
