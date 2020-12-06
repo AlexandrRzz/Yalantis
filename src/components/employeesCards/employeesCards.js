@@ -37,7 +37,7 @@ export default function EmployeesCards({ togleEmploye }) {
   return (
     <div className="employeesCards">
       <h2>​Employees</h2>
-      {employeesCardsList}
+      <div className="employeesCards__cards">{employeesCardsList}</div>
     </div>
   );
 }

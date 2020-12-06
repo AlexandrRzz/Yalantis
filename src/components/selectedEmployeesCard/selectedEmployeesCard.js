@@ -12,7 +12,7 @@ export default function SelectedEmployeesCard({ header, employeList = [] }) {
     });
   }
   return (
-    <div className="selectedEmployeesCard">
+    <div>
       <h3>{header}</h3>
       <ul>{renderItems(employeList)}</ul>
     </div>

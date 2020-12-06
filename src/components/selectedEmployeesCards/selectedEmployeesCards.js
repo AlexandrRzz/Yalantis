@@ -87,7 +87,7 @@ export default function SelectedEmployeesCards() {
   }
 
   return (
-    <div className="selectedEmployeesCard">
+    <div className="selectedEmployeesCards">
       <h2>​Employees birthday</h2>
       {employeesCardsList}
     </div>

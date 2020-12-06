@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Employees from "./components/employees/employees";
 import Home from "./components/home/home";

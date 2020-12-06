@@ -41,7 +41,7 @@ export default function EmployeesCard({ header, employeList = [] }) {
   return (
     <div className="employeesCard">
       <h3>{header}</h3>
-      <ul>{renderItems(employeList)}</ul>
+      <ul className="employeesCard__items">{renderItems(employeList)}</ul>
     </div>
   );
 }

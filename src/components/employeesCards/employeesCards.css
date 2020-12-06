@@ -1,6 +1,11 @@
 .employeesCards {
-  flex: 3;
+  border: 2px black solid;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0.5rem;
+}
+
+.employeesCards__cards {
   display: flex;
   flex-wrap: wrap;
-  border-right: 2px black solid;
 }
