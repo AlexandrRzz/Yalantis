@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export const StoreContext = React.createContext(null);
 
-export default ({ children }) => {
+const Store = ({ children }) => {
   const initialState = () => {
     return JSON.parse(localStorage.getItem("employees")) || [];
   };
@@ -21,3 +21,5 @@ export default ({ children }) => {
     <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
   );
 };
+
+export default Store;
