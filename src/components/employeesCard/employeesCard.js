@@ -1,14 +1,15 @@
 import { StoreContext } from "./../../utils/store";
 import { useContext, useEffect } from "react";
+import Cookies from "js-cookie";
 import "./employeesCard.css";
 export default function EmployeesCard({ header, employeList = [] }) {
   const {
     selected: [selected, setSelected],
   } = useContext(StoreContext);
 
-  useEffect(() => localStorage.setItem("employees", JSON.stringify(selected)), [
-    selected,
-  ]);
+  useEffect(() => {
+    Cookies.set("employees", JSON.stringify(selected));
+  }, [selected]);
 
   const togleEmploye = (id) => {
     setSelected((prevSelected) => {

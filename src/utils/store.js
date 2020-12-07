@@ -1,10 +1,16 @@
 import React, { useState } from "react";
+import Cookies from "js-cookie";
 
 export const StoreContext = React.createContext(null);
 
 const Store = ({ children }) => {
   const initialState = () => {
-    return JSON.parse(localStorage.getItem("employees")) || [];
+    let initialSelected = [];
+    const selectedFromCookies = Cookies.get("employees");
+    if (selectedFromCookies) {
+      initialSelected = JSON.parse(selectedFromCookies);
+    }
+    return initialSelected;
   };
 
   const [employees, setEmployees] = useState([]);
