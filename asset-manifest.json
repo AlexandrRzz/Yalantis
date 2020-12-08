@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Yalantis/static/css/main.999ea50f.chunk.css",
+    "main.js": "/Yalantis/static/js/main.04cea4dd.chunk.js",
+    "main.js.map": "/Yalantis/static/js/main.04cea4dd.chunk.js.map",
+    "runtime-main.js": "/Yalantis/static/js/runtime-main.9b5ca5d3.js",
+    "runtime-main.js.map": "/Yalantis/static/js/runtime-main.9b5ca5d3.js.map",
+    "static/js/2.842ed72e.chunk.js": "/Yalantis/static/js/2.842ed72e.chunk.js",
+    "static/js/2.842ed72e.chunk.js.map": "/Yalantis/static/js/2.842ed72e.chunk.js.map",
+    "static/js/3.f7790a61.chunk.js": "/Yalantis/static/js/3.f7790a61.chunk.js",
+    "static/js/3.f7790a61.chunk.js.map": "/Yalantis/static/js/3.f7790a61.chunk.js.map",
+    "index.html": "/Yalantis/index.html",
+    "static/css/main.999ea50f.chunk.css.map": "/Yalantis/static/css/main.999ea50f.chunk.css.map",
+    "static/js/2.842ed72e.chunk.js.LICENSE.txt": "/Yalantis/static/js/2.842ed72e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9b5ca5d3.js",
+    "static/js/2.842ed72e.chunk.js",
+    "static/css/main.999ea50f.chunk.css",
+    "static/js/main.04cea4dd.chunk.js"
+  ]
+}
