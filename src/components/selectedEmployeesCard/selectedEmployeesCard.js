@@ -6,7 +6,7 @@ export default function SelectedEmployeesCard({ header, employeList = [] }) {
     return arr.map(({ id, firstName, lastName, dob }) => {
       return (
         <li key={id}>
-          {firstName} {lastName} - {dob}
+          {lastName} {firstName} - {dob}
         </li>
       );
     });

@@ -4,7 +4,7 @@ import EmployeesCard from "./../employeesCard/employeesCard";
 import "./employeesCards.css";
 function groupEmployesByAlphabet(empl) {
   const resObj = empl.reduce((res, employe) => {
-    const firstLetter = employe.firstName[0];
+    const firstLetter = employe.lastName[0];
     if (!res[firstLetter]) {
       res[firstLetter] = [employe];
     } else {

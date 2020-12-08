@@ -29,7 +29,7 @@ export default function EmployeesCard({ header, employeList = [] }) {
     return arr.map(({ id, firstName, lastName }) => {
       return (
         <li key={id}>
-          {firstName} {lastName}{" "}
+          {lastName} {firstName}
           <input
             type="checkbox"
             checked={selected.indexOf(id) >= 0}

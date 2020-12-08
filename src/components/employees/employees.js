@@ -15,7 +15,7 @@ export default function Employees() {
     const emplServ = new EmployeesSeervice();
     emplServ.getEmployees().then((employeesData) => {
       const sortedEmployees = [...employeesData].sort((empl1, empl2) =>
-        empl1.firstName > empl2.firstName ? 1 : -1
+        empl1.lastName > empl2.lastName ? 1 : -1
       );
       setEmployees(sortedEmployees);
       setLoading(false);

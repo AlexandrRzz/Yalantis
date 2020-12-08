@@ -51,12 +51,12 @@ function groupSelectedEmployesByMonth(selEmpl, empl) {
   return resArr;
 }
 
-function sortByMonthAndFirstName(arr) {
+function sortByMonthAndLastName(arr) {
   return [...arr.sort((a, b) => a.month - b.month)].map((el) => {
     return {
       ...el,
       employees: el.employees.sort((c, d) => {
-        return c.firstName > d.firstName ? 1 : -1;
+        return c.lastName > d.lastName ? 1 : -1;
       }),
     };
   });
@@ -71,7 +71,7 @@ export default function SelectedEmployeesCards() {
   let employeesCardsList = <h3>No selected employees</h3>;
 
   if (selected.length > 0) {
-    const groupEmployes = sortByMonthAndFirstName(
+    const groupEmployes = sortByMonthAndLastName(
       groupSelectedEmployesByMonth(selected, employees)
     );
 
